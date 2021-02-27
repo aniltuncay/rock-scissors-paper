@@ -1,0 +1,63 @@
+body {
+    background-color: #fc5603;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+button {
+    background-color: #fc5603;
+    color: white;
+    border-radius: 10px;
+    font-size: 2rem;
+    padding: 5px;
+    margin-right: 2rem;
+    margin-top: 3rem;
+    outline: none;
+    cursor: pointer;
+}
+
+#userChoice {
+    margin-top: 10rem;
+}
+
+#afterUserChoice {
+    margin-top: 3rem;
+}
+
+p {
+    margin-top: 3rem;
+    font-size: 2rem;
+    color: white;
+}
+
+#result {
+    justify-content: center;
+    align-items: center;
+}
+
+#resultUserChoose {
+    margin: 2rem;
+}
+
+#result p {
+    margin: 2rem;
+}
+
+#result button {
+    margin: 2rem;
+}
+
+h1 {
+    color: white;
+}
+
+.resultMessageStyle {
+    color: #F0FF33;
+    font-size: 3rem;
+}
