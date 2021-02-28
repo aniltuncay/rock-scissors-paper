@@ -1,8 +1,8 @@
 const rockButton = document.getElementById("rockButton");
 const paperButton = document.getElementById("paperButton");
 const scissorsButton = document.getElementById("scissorsButton");
-let userSelection = 0;
-let computerSelection = 0;
+let userSelection = "";
+let computerSelection = "";
 document.getElementById("computerChoice").style.display = "none";
 document.getElementById("result").style.display = "none";
 document.getElementById("afterUserChoice").style.display = "none";
@@ -13,19 +13,19 @@ let userImgLink = null;
 const firstDisplay = () => {
     rockButton.addEventListener("click", () => {
         showHideElements();
-        userSelection = 1;
+        userSelection = "rock";
         userImgLink = "img/rock.png"
         randomComputerChoice(userSelection, userImgLink);
     })
     paperButton.addEventListener("click", () => {
         showHideElements();
-        userSelection = 2;
+        userSelection = "paper";
         userImgLink = "img/paper.png"
         randomComputerChoice(userSelection, userImgLink);
     })
     scissorsButton.addEventListener("click", () => {
         showHideElements();
-        userSelection = 3;
+        userSelection = "scissors";
         userImgLink = "img/scissors.png"
         randomComputerChoice(userSelection, userImgLink);
     })
@@ -42,15 +42,14 @@ const randomComputerChoice = (userSelection, userImgLink) => {
     computerSelectionIndex = Math.floor((Math.random() * 3))
 
     if (computerSelectionArr[computerSelectionIndex] === "img/rock.png") {
-        computerSelection = 1;
+        computerSelection = "rock";
     }
     else if (computerSelectionArr[computerSelectionIndex] === "img/paper.png") {
-        computerSelection = 2;
+        computerSelection = "paper";
     }
     else {
-        computerSelection = 3;
+        computerSelection = "scissors";
     }
-
     compareChoices(userSelection, computerSelectionArr[computerSelectionIndex], computerSelection, userImgLink);
 }
 const compareChoices = (userSelection, computerChoiceImg, computerSelection, userImgLink) => {
@@ -60,32 +59,32 @@ const compareChoices = (userSelection, computerChoiceImg, computerSelection, use
         console.log("computer selection : " + computerSelection)
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 1 && computerSelection === 2) {
+    if (userSelection === "rock" && computerSelection === "paper") {
         winner = "Computer";
         resultMessage = "paper wraps the rock"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 1 && computerSelection === 3) {
+    if (userSelection === "rock" && computerSelection === "scissors") {
         winner = "User";
         resultMessage = "rock broke the scissors"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 2 && computerSelection === 3) {
+    if (userSelection === "paper" && computerSelection === "scissors") {
         winner = "Computer";
         resultMessage = "Scissors cut the paper"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 2 && computerSelection === 1) {
+    if (userSelection === "paper" && computerSelection === "rock") {
         winner = "User";
         resultMessage = "paper wraps the rock"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 3 && computerSelection === 1) {
+    if (userSelection === "scissors" && computerSelection === "rock") {
         winner = "Computer";
         resultMessage = "rock broke the scissors"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
     }
-    if (userSelection === 3 && computerSelection === 2) {
+    if (userSelection === "scissors" && computerSelection === "paper") {
         winner = "User";
         resultMessage = "Scissors cut the paper"
         resultHtml(resultMessage, winner, computerChoiceImg, userImgLink)
@@ -105,25 +104,28 @@ const resultHtml = (resultMessage, winner, computerChoiceImg, userImgLink) => {
     const resultMessageText = document.createElement("p");
     const restartButton = document.createElement("button");
 
-    computerChooseHeaderElement.textContent="COMPUTER CHOOSE"
+    computerChooseHeaderElement.textContent = " COMPUTER CHOOSE "
     computerChooseImgElement.src = computerChoiceImg;
+
     resultComputerChooseElement.appendChild(computerChooseHeaderElement);
     resultComputerChooseElement.appendChild(computerChooseImgElement)
-    userChooseHeaderElement.textContent="USER CHOOSE"
+
+    userChooseHeaderElement.textContent = " USER CHOOSE "
     resultUserChooseElement.appendChild(userChooseHeaderElement);
     userChooseImgElement.src = userImgLink;
     resultUserChooseElement.appendChild(userChooseImgElement);
+
     winnerText.textContent = "WINNER : " + winner;
     resultMessageText.textContent = resultMessage;
-    resultMessageText.className="resultMessageStyle"
+
+    resultMessageText.className = "resultMessageStyle"
     resultElement.appendChild(resultMessageText);
     resultElement.appendChild(winnerText);
-    restartButton.textContent="RESTART GAME";
-    console.log(resultElement);
-    console.log(resultUserChooseElement);
-    console.log( resultComputerChooseElement)
-    restartButton.addEventListener("click",function(){
+    
+    restartButton.textContent = "RESTART GAME";
+    restartButton.addEventListener("click", ()=> {
         window.location.reload()
     })
+
     resultElement.appendChild(restartButton)
 }
